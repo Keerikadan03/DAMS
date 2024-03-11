@@ -4,6 +4,7 @@ import heroImg03 from '../assets/images/hero-img03.png'
 import icon01 from '../assets/images/icon01.png'
 import { Link } from 'react-router-dom'
 import { BsRightArrow } from 'react-icons/bs'
+import React from 'react'
 
 const Home = () => {
   return (
@@ -44,6 +45,7 @@ const Home = () => {
                   <h2 className='text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor'>
                     10+
                   </h2>
+                  {/* yellow line */}
                   <span className='w-[100px] h-2 bg-purpleColor rounded-full block mt-[-14px]'></span>
                   <p className='text_para'>Hospitals</p>
                 </div>  
@@ -52,26 +54,16 @@ const Home = () => {
                   <h2 className='text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor'>
                     100%
                   </h2>
+                  {/* yellow line */}
                   <span className='w-[100px] h-2 bg-irisBlueColor rounded-full block mt-[-14px]'></span>
                   <p className='text_para'>Patient Satisfaction</p>
                 </div>  
               </div>
               
             </div>
-
-            {/* == hero content == */}
-
-            <div className='flex gap-[30px] justify-end'>
-              <div>
-                <img className='w-full' src={heroImg01} alt="img1" />
-              </div>
-              <div className='mt-[30px]'>
-                <img className='w-full mb-[30px]' src={heroImg02} alt="img1" />
-                <img className='w-full' src={heroImg03} alt="img1" />
-              </div>
-            </div>
           </div>
         </div>
+
       </section>
 
       {/* == hero section end == */}
