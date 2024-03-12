@@ -7,6 +7,7 @@ import icon03 from '../assets/images/icon03.png'
 import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import React from 'react'
+import About from '../components/About/About'
 
 const Home = () => {
   return (
@@ -150,6 +151,7 @@ const Home = () => {
 
       </section>
       
+      <About />
     </>
     )
 }
