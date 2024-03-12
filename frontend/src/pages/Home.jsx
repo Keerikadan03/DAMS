@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import React from 'react'
 import About from '../components/About/About'
+import ServiceList from '../components/Services/ServiceList'
 
 const Home = () => {
   return (
@@ -103,7 +104,7 @@ const Home = () => {
               <h2 className='text-[26px] leading-9 text-headingColor font-[700] text-center'>Find A Doctor</h2>
               <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care. From the lab to the clinic.</p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover: bg-primaryColor hover:border-none'>
+              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
               </Link>
 
@@ -122,7 +123,7 @@ const Home = () => {
               <h2 className='text-[26px] leading-9 text-headingColor font-[700] text-center'>Find A Location</h2>
               <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care. From the lab to the clinic.</p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover: bg-primaryColor hover:border-none'>
+              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
               </Link>
 
@@ -141,7 +142,7 @@ const Home = () => {
             <h2 className='text-[26px] leading-9 text-headingColor font-[700] text-center'>Book Appointment</h2>
             <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care. From the lab to the clinic.</p>
 
-            <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover: bg-primaryColor hover:border-none'>
+            <Link to='/doctors' className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
               <BsArrowRight className='group-hover:text-white w-6 h-5' />
             </Link>
 
@@ -152,6 +153,18 @@ const Home = () => {
       </section>
       
       <About />
+
+      {/* == services section == */}
+
+      <section>
+        <div className="container">
+          <div className='xl:w-[470px] mx-auto'>
+            <h2 className='heading text-center'>Our medical services</h2>
+            <p className='text_para text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care.</p>
+          </div>
+          <ServiceList />
+        </div>
+      </section>
     </>
     )
 }
