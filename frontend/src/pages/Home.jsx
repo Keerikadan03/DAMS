@@ -62,6 +62,16 @@ const Home = () => {
               </div>
               
             </div>
+
+            <div className='flex gap-[30px] justify-end'>
+              <div>
+                <img src={heroImg01} alt="img" className='w-full' />
+              </div>
+              <div className='mt-[30px]'>
+                <img src={heroImg02} alt="img" className='w-full mb-[30px]'/>
+                <img src={heroImg03} alt="img" className='w-full'/>
+              </div>
+            </div>
           </div>
         </div>
 
