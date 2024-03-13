@@ -4,6 +4,7 @@ import heroImg03 from '../assets/images/hero-img03.png'
 import icon01 from '../assets/images/icon01.png'
 import icon02 from '../assets/images/icon02.png'
 import icon03 from '../assets/images/icon03.png'
+import featureImg from '../assets/images/feature-img.png'
 import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
 import React from 'react'
@@ -163,6 +164,29 @@ const Home = () => {
             <p className='text_para text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care.</p>
           </div>
           <ServiceList />
+        </div>
+      </section>
+
+      {/* == feature section ==  */}
+
+      <section>
+        <div className="container">
+          <div className="flex items-center justify-between flex-col lg:flex-row">
+            <div className='xl:w-670px'>
+              <h2 className="heading">Get virtual treatment <br /> anytime.</h2>
+              <ul className="pl-6">
+                <li className="text_para">1. Schedule the appointment directly.</li>
+                <li className="text_para">2. Search for your physician here, and contact their office.</li>
+                <li className="text_para">3. View our physicians who are accepting new patients, use online scheduling tool to select an appointment time.</li>
+              </ul>
+              <Link to={'/'}><button className='btn'>Learn More</button></Link>
+            </div>
+
+            {/* == feature image == */}
+            <div className='relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0'>
+              <img src={featureImg} alt="img"  className='w-3/4'/>
+            </div>
+          </div>
         </div>
       </section>
     </>
