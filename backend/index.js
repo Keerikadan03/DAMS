@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookieparser';
+import authRoute from './routes/auth.js'
 
 dotenv.config()
 
@@ -25,9 +26,9 @@ const connectDB = async() => {
         //     useUnifiedTopology: true
         // }
         )
-        console.log('MongoDb database is connected')
+        console.log('MongoDB database is connected')
     }catch(e){
-        console.log('MongoDb database is failed =>', e)
+        console.log('MongoDB database is failed =>', e)
     }
 }
 
@@ -36,6 +37,7 @@ const connectDB = async() => {
 app.use(express.json())
 app.use(cookieParser)
 app.use(cors(corsOptions))
+app.use('/api/v1/auth', authRoute);
 
 app.listen(port, ()=> {
     connectDB()
