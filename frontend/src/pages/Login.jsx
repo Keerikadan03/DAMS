@@ -40,7 +40,7 @@ const Login = () => {
             />
           </div>
           <div className='mt-7'>
-            <button type='submit' className='w-full btn rounded-lg'>Submit</button>
+            <button type='submit' className='w-full btn rounded-lg'>Login</button>
           </div>
           <p className=' mt-5 text-center text-textColor'>Don&apos;t have an account?
             <Link to='/register' className='text-primaryColor font-medium ml-1'>Register</Link>
