@@ -1,7 +1,7 @@
-import signUpImage from  '../assets/images/signup.gif'
-import avatar from '../assets/images/doctor-img01.png'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import avatar from '../assets/images/doctor-img01.png'
+import signUpImage from '../assets/images/signup.gif'
 
 const Signup = () => {
 
@@ -111,8 +111,8 @@ const Signup = () => {
                   <img src={avatar} alt="" className='w-full rounded-full'/>
                 </figure>
                 <div className='relative w-[130px] h-[50px]'>
-                  <input 
-                  type="file" 
+                  <input
+                  type="file"
                   name='photo'
                   id='customFile'
                   onChange={handleFileInputChange}
