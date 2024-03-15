@@ -9,28 +9,27 @@ const generateToken = user => {
     })
 }
 
-export const register = async(req, res) => {
+export const register = async (req, res) => {
     const { email, password, name, role, photo, gender } = req.body;
-    try{
+    try {
+        // Check if user already exists
         let user = null;
-
-        //checking if user already exists
-        if(role === 'patient'){
-            user = await User.findOne({email})
-        }else if(role === 'doctor'){
-            user = await Doctor.findOne({email})
+        if (role === 'patient') {
+            user = await User.findOne({ email });
+        } else if (role === 'doctor') {
+            user = await Doctor.findOne({ email });
         }
 
-        if(user){
-            return res.status(409).json({message: 'User already exists'})
+        if (user) {
+            return res.status(409).json({ message: 'User already exists' });
         }
 
-        //no existing user found so create new user
-        const salt = bcrypt.genSalt(10);
+        // Hash the password
+        const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        //if user is a patient
-        if(role === 'patient'){
+        // Create new user instance based on role
+        if (role === 'patient') {
             user = new User({
                 name,
                 email,
@@ -38,11 +37,8 @@ export const register = async(req, res) => {
                 photo,
                 gender,
                 role
-            })
-        }
-
-        //if user is a doctor
-        if(role === 'doctor'){
+            });
+        } else if (role === 'doctor') {
             user = new Doctor({
                 name,
                 email,
@@ -50,17 +46,21 @@ export const register = async(req, res) => {
                 photo,
                 gender,
                 role
-            })
+            });
         }
 
-        await user.save()
-        res.status(200).json({success: true,message: 'User successfully created.'})
+        // Save the user to the database
+        await user.save();
 
-    }catch(e){
-        res.status(200).json({success: false,message: 'internal server error'})
-        console.log(e);
+        // Send success response
+        res.status(200).json({ success: true, message: 'User successfully created.' });
+    } catch (error) {
+        // Handle errors
+        console.error('Error during user registration:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
+
 
 export const login = async(req, res) => {
     const { email, password } = req.body;
@@ -80,23 +80,23 @@ export const login = async(req, res) => {
         // is no user found check if user is registered
 
         if(!user){
-            return res.status(404).json({message: "User not found"})
+            res.status(404).json({message: "User not found"})
         }
 
         //check if entered password is right
         const isPasswordMatch = await bcrypt.compare(req.body.password, user.password)
         if(!isPasswordMatch){
-            return res.status(400).json({status: false, message: "Invalid Credentials"})
+            res.status(400).json({status: false, message: "Invalid Credentials"})
         }
         
         //generate token
         const token = generateToken(user);
 
         const { password, role, appointments, ...rest } = user._doc;
-        return res.status(200).json({status:true, message: 'User logged in Successfully', token, data: {...rest}, role})
+        res.status(200).json({status:true, message: 'User logged in Successfully', token, data: {...rest}, role})
 
     }catch(e){
-        return res.status(500).json({status:false, message:'Failed to Login'})
+        res.status(500).json({status:false, message:'Failed to Login'})
         console.log(e);
     }
 };
