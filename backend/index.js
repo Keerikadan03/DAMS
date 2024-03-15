@@ -2,7 +2,6 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import cookieParser from 'cookieparser';
 import authRoute from './routes/auth.js'
 import userRoute from './routes/user.js'
 
@@ -14,7 +13,7 @@ const corsOptions = {
     origin: true
 }
 
-app.get('/', (req, res) => {
+app.get('/', (res) => {
     res.send('API is working')
 })
 
@@ -34,9 +33,8 @@ const connectDB = async() => {
 }
 
 //middleware
-
+    
 app.use(express.json())
-app.use(cookieParser)
 app.use(cors(corsOptions))
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
