@@ -5,10 +5,10 @@ import DoctorCard from './DoctorCard';
 
 
 const DoctorsList = () => {
-  return (
+    return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[50px]">
-      {doctors.map((doctors,index)=> (<DoctorCard key={index} doctor={doctors}/>))}</div>
-  )
+        {doctors.map(doctors=> (<DoctorCard key={doctors.id} doctor={doctors}/>))}</div>
+    )
 }
 
 export default DoctorsList

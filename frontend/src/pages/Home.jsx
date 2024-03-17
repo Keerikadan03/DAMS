@@ -164,7 +164,7 @@ const Home = () => {
             <h2 className='heading text-center'>Our medical services</h2>
             <p className='text_para text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care.</p>
           </div>
-          <DoctorsList/>
+          
           <ServiceList />
         </div>
       </section>
@@ -189,6 +189,7 @@ const Home = () => {
               <img src={featureImg} alt="img"  className='w-3/4'/>
             </div>
           </div>
+          <DoctorsList/>
         </div>
       </section>
     </>
