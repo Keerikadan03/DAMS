@@ -1,14 +1,15 @@
+import React from 'react'
+import { BsArrowRight } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
+import featureImg from '../assets/images/feature-img.png'
 import heroImg01 from '../assets/images/hero-img01.png'
 import heroImg02 from '../assets/images/hero-img02.png'
 import heroImg03 from '../assets/images/hero-img03.png'
 import icon01 from '../assets/images/icon01.png'
 import icon02 from '../assets/images/icon02.png'
 import icon03 from '../assets/images/icon03.png'
-import featureImg from '../assets/images/feature-img.png'
-import { Link } from 'react-router-dom'
-import { BsArrowRight } from 'react-icons/bs'
-import React from 'react'
 import About from '../components/About/About'
+import DoctorsList from '../components/Doctors/DoctorList'
 import ServiceList from '../components/Services/ServiceList'
 
 const Home = () => {
@@ -163,6 +164,7 @@ const Home = () => {
             <h2 className='heading text-center'>Our medical services</h2>
             <p className='text_para text-center'>World-class care for everyone. Our health systems offer unmatched, expert health care.</p>
           </div>
+          <DoctorsList/>
           <ServiceList />
         </div>
       </section>
