@@ -67,8 +67,8 @@ export const login = async(req, res) => {
     try{
         let user = null;
 
-        const patient = User.findOne({email})
-        const doctor = Doctor.findOne({email})
+        const patient = await User.findOne({email})
+        const doctor = await Doctor.findOne({email})
 
         if(patient){
             user = patient
@@ -97,6 +97,6 @@ export const login = async(req, res) => {
 
     }catch(e){
         res.status(500).json({status:false, message:'Failed to Login'})
-        console.log(e);
+        console.error('Error during user login:', e);
     }
 };
