@@ -6,6 +6,6 @@ const userRouter = express.Router()
 userRouter.get('/:id', getSingleUser);
 userRouter.get('/', getAllUsers);
 userRouter.put('/:id', updateUser);
-userRouter.put('/:id', deleteUser);
+userRouter.delete('/:id', deleteUser);
 
 export default userRouter;
