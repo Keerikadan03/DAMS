@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import starIcon from '../../assets/images/Star.png';
 import doctorImg from '../../assets/images/doctor-img02.png';
+import DoctorAbout from './DoctorAbout';
+import Feeback from './Feeback';
 
 const DoctorDetails = () => {
+  const [tab,setTab] = useState('about');
   return (
     <section>
       <div className='max-w-[1170px] px-5 mx-auto'>
@@ -30,8 +33,21 @@ const DoctorDetails = () => {
                   dgsgkfdhkdhkhkhg fdfgfdg dfgfdgdf dfgdgdf gfdgdg</p>
               </div>
             </div>
-          </div>
+            <div className='mt-[50px] border-b border-solid border-[#0066ff34]'>
+              <button onClick={() => setTab('about')} className={`${tab == 'about' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>About</button>
+              <button onClick={() => setTab('feedback')} className={`${tab == 'feedback' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px] leading-7 text-headingColor font-semibold`}>Feedback</button>
+            </div>
+            
+            <div className='mt-[50px]'>
+              {
+                tab == 'about' && <DoctorAbout/>
+              }
+              {
+                tab == 'feedback' && <Feeback/>
+              }
+            </div>
 
+          </div>
           <div>  </div>
         </div>
       </div>
