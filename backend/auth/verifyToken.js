@@ -28,6 +28,23 @@ export const authenticate = (req,res, next) => {
     }
 }
 
-export const restrict = async(req,res,next) => {
-    
+export const restrict = roles => async(req,res,next) => {
+    const userId = req.userId;
+    let user;
+
+    const patient = await User.findById(userId);
+    const doctor = await Doctor.findById(userId);
+
+    if(patient){
+        user = patient;
+    }
+
+    if(doctor){
+        user = doctor;
+    }
+
+    if(!roles.includes(user.role)){
+        return res.status(403).json({success:false, message: 'You do not have permission to access this route'});
+    }
+    next();
 }
