@@ -5,6 +5,7 @@ import cors from 'cors'
 import authRoute from './routes/auth.js'
 import userRoute from './routes/user.js'
 import doctorRouter from './routes/doctor.js'
+import reviewRouter from './routes/review.js'
 
 dotenv.config()
 
@@ -40,6 +41,7 @@ app.use(cors(corsOptions))
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/doctors', doctorRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 app.listen(port, ()=> {
     connectDB()
