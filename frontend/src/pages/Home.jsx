@@ -1,6 +1,7 @@
 import React from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import faqImg from '../assets/images/faq-img.png'
 import featureImg from '../assets/images/feature-img.png'
 import heroImg01 from '../assets/images/hero-img01.png'
 import heroImg02 from '../assets/images/hero-img02.png'
@@ -10,6 +11,7 @@ import icon02 from '../assets/images/icon02.png'
 import icon03 from '../assets/images/icon03.png'
 import About from '../components/About/About'
 import DoctorsList from '../components/Doctors/DoctorList'
+import FaqList from '../components/Faq/FaqList'
 import ServiceList from '../components/Services/ServiceList'
 
 const Home = () => {
@@ -192,6 +194,22 @@ const Home = () => {
           <DoctorsList/>
         </div>
       </section>
+      {/* ==== faq section ====*/}
+      <section>
+        <div className='container'>
+          <div className='flex justify-between gap-[50px] lg:gap-0'>
+            <div className='w=1/2 hidden md:block'><img src={faqImg} alt=''/></div>
+          
+            <div className='w-full md:w-1/2'>
+              <h2 className='heading'>
+                Most questions by beloved patients
+              </h2>
+              <FaqList/>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ==== faq sectio end ====*/}
     </>
     )
 }
