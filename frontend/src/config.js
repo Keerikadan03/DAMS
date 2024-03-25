@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://dams-backend-4bthz9bvh-keerikadan03s-projects.vercel.app/api/v1'
+export const BASE_URL = 'https://dams-eight.vercel.app/api/v1'
