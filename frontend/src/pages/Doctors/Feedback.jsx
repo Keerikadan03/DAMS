@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import avatar from '../../assets/images/avatar-icon.png';
-import { formateDate } from '../../utils/formateDate';
+import { formatDate } from '../../utils/formatDate';
 import FeedbackForm from './FeedbackForm';
 
-const Feeback = () => {
+const Feedback = () => {
     const [showFeedbackForm, SetShowFeedbackForm]  = useState(false);
     return (
     <div>
@@ -19,7 +19,7 @@ const Feeback = () => {
                         <h5 className='text-[16px] leading-6 text-primaryColor font-bold'>
                             Babu Nambudidi
                         </h5>
-                        <p className='text-[14px] leading-6 text-textColor'>{formateDate('02-14-2023')}</p>
+                        <p className='text-[14px] leading-6 text-textColor'>{formatDate('02-14-2023')}</p>
                         <p className='text__para mt-3 font-medium text-[15px]'>Good jarbice</p>
                     </div>
                 </div>
@@ -37,4 +37,4 @@ const Feeback = () => {
     )
 }
 
-export default Feeback
+export default Feedback

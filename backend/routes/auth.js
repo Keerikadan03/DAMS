@@ -3,6 +3,10 @@ import { register, login } from '../controllers/authController.js'
 
 const authRouter = express.Router();
 
+authRouter.get('/', (req,res) => {
+    res.send('Auth Route is Working')
+})
+
 authRouter.post('/login', login);
 authRouter.post('/register', register);
 

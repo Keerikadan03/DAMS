@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import starIcon from '../../assets/images/Star.png';
 import doctorImg from '../../assets/images/doctor-img02.png';
 import DoctorAbout from './DoctorAbout';
-import Feeback from './Feeback';
+import Feedback from './Feedback';
 
 const DoctorDetails = () => {
   const [tab,setTab] = useState('about');
@@ -43,7 +43,7 @@ const DoctorDetails = () => {
                 tab == 'about' && <DoctorAbout/>
               }
               {
-                tab == 'feedback' && <Feeback/>
+                tab == 'feedback' && <Feedback/>
               }
             </div>
 
