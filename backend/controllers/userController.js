@@ -43,9 +43,9 @@ export const getAllUsers = async(req,res) => {
         res.status(404).json({success:false, message: 'Users not found'});
         console.log(e);
     }
-}
+};
 
-export const getUserProfile = aync(req,res) => {
+export const getUserProfile = async(req,res) => {
     const userId = req.userId;
     
     try{
@@ -62,4 +62,4 @@ export const getUserProfile = aync(req,res) => {
         res.status(500).json({status:false, message: 'Something went wrong'})
         console.log('Error at getting profile pic is => ', e)
     }
-}
+};
