@@ -1,9 +1,9 @@
-const cloud_name = import.meta.env.VITE_CLOUD_NAME
-const upload_preset = import.meta.env.VITE_UPLOAD_PRESET
+const cloud_name = "keerikadan03"
+const upload_preset = "doctor-appointment-management-system"
 
 const uploadImageToCloudinary = async file => {
-    // console.log(cloud_name)
-    // console.log(upload_preset)
+    console.log(cloud_name)
+    console.log(upload_preset)
     const uploadData = new FormData();
 
     uploadData.append('file', file)
