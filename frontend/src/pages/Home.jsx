@@ -35,7 +35,7 @@ const Home = () => {
                   Request an Appointment
                 </button>
               </div>
-
+              
               {/* HERO COUNTER */}
 
               <div className='mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]'>
