@@ -14,8 +14,9 @@ const SymptomSearch = ({ database }) => {
     const index = selectedSymptoms.indexOf(id);
     if (index === -1) {
       setSelectedSymptoms([...selectedSymptoms, id]);
-      addData(...data,id);
+      console.log(data)
       console.log(id)
+      addData([...data,id]);
     } else {
       setSelectedSymptoms(selectedSymptoms.filter((symptomId) => symptomId !== id));
     }
