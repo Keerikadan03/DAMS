@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useSymtomContext } from '../../context/SymptomContext';
 
 const SymptomSearch = ({ database }) => {
+  const { data, addData } = useSymtomContext();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
 
@@ -12,6 +14,7 @@ const SymptomSearch = ({ database }) => {
     const index = selectedSymptoms.indexOf(id);
     if (index === -1) {
       setSelectedSymptoms([...selectedSymptoms, id]);
+      addData(...data,id);
       console.log(id)
     } else {
       setSelectedSymptoms(selectedSymptoms.filter((symptomId) => symptomId !== id));
@@ -37,6 +40,7 @@ const SymptomSearch = ({ database }) => {
             key={symptom.ID}
             onClick={() => handleSymptomClick(symptom.ID)}
             style={{ cursor: 'pointer' }}
+            className='text-[16px] leading-7 font-400 text-textColor mt-2'
           >
             {symptom.Name}
             {selectedSymptoms.includes(symptom.ID) && <span> (selected)</span>}
@@ -44,10 +48,10 @@ const SymptomSearch = ({ database }) => {
         ))}
       </ul>}
       <div>
-        <h2>Selected Symptoms:</h2>
+        <h2 className='text-[16px] leading-7 font-400 text-textColor mt-2'>Selected Symptoms:</h2>
         <ul>
           {selectedSymptoms.map((id) => (
-            <li key={id}>{database.find((symptom) => symptom.ID === id).Name}</li>
+            <li key={id} className='text-[16px] leading-7 font-400 text-primaryColor'>{database.find((symptom) => symptom.ID === id).Name}</li>
           ))}
         </ul>
       </div>
