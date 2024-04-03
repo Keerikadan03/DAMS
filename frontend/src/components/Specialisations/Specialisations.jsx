@@ -19,7 +19,7 @@ const Specialisations = () => {
       })
 
       const result = await response.json();
-      console.log(result.Token);
+      // console.log(result.Token);
       return result.Token;
     }catch(e){
       console.log("Error while fetching token => ", e);
@@ -49,7 +49,7 @@ const Specialisations = () => {
         });
         const result = await response.json();
         console.log(result);
-
+        setSpecialisations(result);
       }catch(e){
         console.log("Error at fetching specialisations => ", e);
       }
@@ -84,6 +84,9 @@ const Specialisations = () => {
     </div>
 
     <button className='btn mt-[1px] ml-4' onClick={()=> callSpecialisations(searchTerm)}>Find Specialisations</button>
+    </div>
+    <div>
+    {Object.values(specialisations).map(el => <h1 key={el.ID}>{el.Name}</h1>)}
     </div>
     </>
   )
