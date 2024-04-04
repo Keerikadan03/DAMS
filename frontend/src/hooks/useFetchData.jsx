@@ -21,7 +21,7 @@ const useFetchdata = (url) => {
                 const result = await response.json();
     
                 if(!response.ok){
-                    return toast.error(result.message)
+                    // return toast.error(result.message)
                     throw new Error(result.message)
                 }
 
