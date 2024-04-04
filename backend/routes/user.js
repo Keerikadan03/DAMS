@@ -8,7 +8,7 @@ userRouter.get('/:id',authenticate, restrict(['patient']), getSingleUser);
 userRouter.get('/',authenticate, restrict(['admin']),  getAllUsers);
 userRouter.put('/:id',authenticate, restrict(['patient']),  updateUser);
 userRouter.delete('/:id',authenticate, restrict(['patient']),  deleteUser);
-userRouter.get('/profiles/me',authenticate, restrict(['patient']),  getUserProfile);
+userRouter.get('/profile/me',authenticate, restrict(['patient']),  getUserProfile);
 userRouter.delete('/appointments/my-appointments',authenticate, restrict(['patient']), getAllAppointments);
 
 export default userRouter;
