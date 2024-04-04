@@ -86,12 +86,7 @@ const Specialisations = () => {
     <button className='btn mt-[1px] ml-4' onClick={()=> callSpecialisations(searchTerm)}>Find Specialisations</button>
     </div>
     <div>
-    {Object.values(specialisations).map(el => 
-      <div className='flex justify-center'>
-        <h1 key={el.ID} className='mr-4'>{el.Name}</h1>
-        <p>{el.Accuracy}</p>
-      </div>
-      )}
+    {Object.values(specialisations).map(el => <h1 key={el.ID}>{el.Name}</h1>)}
     </div>
     </>
   )
