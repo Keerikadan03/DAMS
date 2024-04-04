@@ -2,7 +2,7 @@ import { useContext,useState } from 'react'
 import { authContext } from './../../context/AuthContext'
 import Bookings from './Bookings'
 import Profile from './Profile'
-import useGetProfile from '../../hooks/useFetchdata'
+import useFetchData from '../../hooks/useFetchdata'
 import { BASE_URL } from '../../config'
 import Loading from '../../components/Loader/Loading'
 import Error from '../../components/Error/Error'
@@ -11,7 +11,7 @@ const UserDashboard = () => {
 
   const [tab,setTab] = useState('bookings')
   const { dispatch } = useContext(authContext);
-  const { data:userData, loading, error } = useGetProfile(`${BASE_URL}/users/profile/me`)
+  const { data:userData, loading, error } = useFetchData(`${BASE_URL}/users/profile/me`)
   console.log(userData, 'user data');
   const handleLogout = () => {
     dispatch({type: 'LOGOUT'})
