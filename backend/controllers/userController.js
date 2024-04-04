@@ -76,7 +76,6 @@ export const getAllAppointments = async(req,res) => {
 
         //3 => retrieve doctor from doctor id
         const doctors = await Doctor.find({_id: {$in:doctorIds}}).select("-password")
-
         res.status(200).json({status:true,message:"Appointments Received", data:doctors})
     }catch(e){
         console.log('Error at getting appointments => ',e);
