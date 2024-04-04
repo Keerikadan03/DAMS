@@ -1,6 +1,5 @@
 import { useEffect,useState } from 'react'
 import { token } from '../config'
-import { toast } from 'react-toastify'
 
 const useFetchdata = (url) => {
 
@@ -21,7 +20,6 @@ const useFetchdata = (url) => {
                 const result = await response.json();
     
                 if(!response.ok){
-                    // return toast.error(result.message)
                     throw new Error(result.message)
                 }
 
@@ -38,5 +36,4 @@ const useFetchdata = (url) => {
     },[url])
   return { data, loading, error}
 }
-
 export default useFetchdata
