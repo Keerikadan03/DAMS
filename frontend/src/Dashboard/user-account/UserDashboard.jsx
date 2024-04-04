@@ -1,4 +1,3 @@
-import userImg from '../../assets/images/doctor-img01.png'
 import { useContext,useState } from 'react'
 import { authContext } from './../../context/AuthContext'
 import Bookings from './Bookings'
@@ -29,16 +28,16 @@ const UserDashboard = () => {
           <div className="pb-[50px] px-[30px] rounded-md">
             <div className="flex items-center justify-center">
               <figure className='w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor'>
-                <img src={userImg} alt="" className='w-full h-full rounded-full'/>
+                <img src={userData.photo} alt="" className='w-full h-full rounded-full'/>
               </figure>
             </div>
   
             <div className='text-center mt-4'>
               <h3 className='text-[18px] leading-[30px] text-headingColor font-bold'>
-                George Shajan
+                {userData.name}
               </h3>
               <p className='text-textColor text-[15px] leading-6 font-medium'>
-                george@example.com
+                {userData.email}
               </p>
             </div>
   
@@ -62,7 +61,7 @@ const UserDashboard = () => {
                   tab === 'bookings' && <Bookings />
                 }
                 {
-                  tab === 'settings' && <Profile />
+                  tab === 'settings' && <Profile user={userData}/>
                 }
             </div>
           </div>
