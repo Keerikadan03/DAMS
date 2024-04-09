@@ -20,7 +20,7 @@ const useFetchdata = (url) => {
                 const result = await response.json();
     
                 if(!response.ok){
-                    throw new Error('error at fetching data hook =>', result.message)
+                    throw new Error(result.message)
                 }
 
                 setData(result.data)
