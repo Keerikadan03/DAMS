@@ -11,8 +11,8 @@ const Bookings = () => {
           appointments.map(doctor => <DoctorCard doctor={doctor} key={doctor._id}/>)
         }
       </div>
-      appointments.length === 0 && 
-        <h3 className="mt-5 text-center leading-7 text-[20px] font-semibold text-primaryColor">No appointments</h3>
+      {appointments.length === 0 && 
+        <h3 className="mt-5 text-center leading-7 text-[20px] font-semibold text-primaryColor">No appointments</h3>}
     </div>
   )
 }
