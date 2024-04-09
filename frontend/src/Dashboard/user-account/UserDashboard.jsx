@@ -7,7 +7,7 @@ import { BASE_URL } from "../../config"
 const UserDashboard = () => {
   const { dispatch } = useContext(authContext);
   const [tab,setTab] = useState('bookings');
-  const { data:userData, error, loading} = getUserData(`${BASE_URL}/users/profile/me`)
+  const { data:userData} = getUserData(`${BASE_URL}/users/profile/me`)
   console.log('userdata => ',userData);
 
   const handleLogout = () => {

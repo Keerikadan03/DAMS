@@ -4,12 +4,9 @@ import { token } from '../config'
 const useFetchdata = (url) => {
 
     const [data,setData] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
 
     useEffect(() => {
         const fetchData = async() => {
-            setLoading(true)
             try{
                 const response = await fetch(url, {
                     headers: {
@@ -24,16 +21,13 @@ const useFetchdata = (url) => {
                 }
 
                 setData(result.data)
-                setLoading(false)
             }catch(e){
-                setLoading(false)
-                setError(e.message)
                 console.log("error at fetching data hook is => ", e)
             }
         }
 
         fetchData()
     },[url])
-  return { data, loading, error}
+  return { data}
 }
 export default useFetchdata
