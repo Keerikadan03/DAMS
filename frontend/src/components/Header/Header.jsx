@@ -1,6 +1,6 @@
 import { useEffect, useRef, useContext } from 'react'
 import {NavLink, Link} from 'react-router-dom'
-import logo from '../../assets/images/logo.png'
+import logo from '../../assets/images/docnook.png'
 import { BiMenu } from 'react-icons/bi'
 import { authContext } from '../../context/AuthContext';
 
@@ -56,6 +56,7 @@ const Header = () => {
           {/* LOGO */}
           <div>
             <img
+              className='w-[200px]'
               src={logo}
               alt="logo"
             />

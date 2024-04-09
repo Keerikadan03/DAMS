@@ -1,10 +1,14 @@
 import userimg from "../../assets/images/doctor-img01.png"
 import { useContext,useState } from "react"
 import { authContext } from '../../context/AuthContext'
+import getUserData from "../../hooks/useFetchdata"
+import { BASE_URL } from "../../config"
 
 const UserDashboard = () => {
   const { dispatch } = useContext(authContext);
   const [tab,setTab] = useState('bookings');
+  const { data:userData, error, loading} = getUserData(`${BASE_URL}/users/profile/me`)
+  console.log('userdata => ',userData);
 
   const handleLogout = () => {
     dispatch({type: 'LOGOUT'});
