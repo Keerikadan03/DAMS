@@ -7,11 +7,14 @@ const Profile = () => {
         email: '',
         phone: '',
         specialization:'',
-
+        ticketPrice: 0,
+        qualifications: [],
+        experiences: [],
+        timeSlots:[]
     })
 
     const handleInputChange = () => {
-
+        setFormData({...formData, [e.target.name]:e.target.value})
     }
   return (
     <div>
@@ -52,7 +55,7 @@ const Profile = () => {
                 />
             </div>
             <div className="mb-5">
-                <div className='grid grid-cols-3 gap-5 mb-[30px]'>
+                <div className='grid grid-cols-2 gap-5 mb-[30px]'>
                     <div>
                         <p className='form_label'>Specialization</p>
                         <select name="specialization"
@@ -71,8 +74,16 @@ const Profile = () => {
                             <option value="gastroenterology">Gastroenterology</option>
                             <option value="general-practice">General practice</option>
                             <option value="internal-medicine">Internal medicine</option>
-
                         </select>
+                    </div>
+
+                    <div>
+                        <p className='form_label'>Ticket Price</p>
+                        <input type="number" 
+                        placeholder='100' 
+                        name='ticketPrice'
+                        value={formData.ticketPrice}
+                        />
                     </div>
                 </div>
             </div>
