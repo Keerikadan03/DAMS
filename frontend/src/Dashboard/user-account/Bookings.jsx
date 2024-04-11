@@ -1,4 +1,4 @@
-import useFetchdata from "../../hooks/useFetchdata"
+// import useFetchdata from "../../hooks/useFetchdata"
 import { BASE_URL } from "../../config"
 import DoctorCard from "../../components/Doctors/DoctorCard"
 import { token } from "../../config"
@@ -6,38 +6,44 @@ import { useState,useEffect } from "react"
 import Loading from "../../components/Loader/Loading"
 import Error from "../../components/Error/Error"
 
-// const getBookingdata = (url) => {
+const getBookingdata = (url) => {
 
-//   const [data,setData] = useState([])
+  const [data,setData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-//   useEffect(() => {
-//       const fetchData = async() => {
-//           try{
-//               const response = await fetch(url, {
-//                   headers: {
-//                       Authorization: `Bearer ${token}`
-//                   }
-//               })
+  useEffect(() => {
+      const fetchData = async() => {
+          setLoading(true);
+          try{
+              const response = await fetch(url, {
+                  headers: {
+                      Authorization: `Bearer ${token}`
+                  }
+              })
   
-//               const result = await response.json();
+              const result = await response.json();
   
-//               if(!response.ok){
-//                   throw new Error(result.message)
-//               }
+              if(!response.ok){
+                  throw new Error(result.message)
+              }
 
-//               setData(result.data)
-//           }catch(e){
-//               console.log("error at fetching data hook is => ", e)
-//           }
-//       }
+              setData(result.data)
+              setLoading(false)
+          }catch(e){
+              setLoading(false);
+              setError(e.message)
+              console.log("error at fetching data hook is => ", e)
+          }
+      }
 
-//       fetchData()
-//   },[url])
-// return { data}
-// }
+      fetchData()
+  },[url])
+return { data, loading, error}
+}
 
 const Bookings = () => {
-  const {data: appointments, loading, error} = useFetchdata(`${BASE_URL}/users/appointments/my-appointments`)
+  const {data: appointments, loading, error} = getBookingdata(`${BASE_URL}/users/appointments/my-appointments`)
   console.log("appointments data =>", appointments)
   return (
     <div>
