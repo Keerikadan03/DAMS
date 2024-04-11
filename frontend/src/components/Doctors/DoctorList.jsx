@@ -2,6 +2,9 @@ import React from 'react';
 
 import { doctors } from '../../assets/data/doctors';
 import DoctorCard from './DoctorCard';
+import { BASE_URL } from '../../config';
+import Loading from '../Loader/Loading';
+import Error from '../Error/Error';
 
 
 const DoctorsList = () => {
