@@ -79,9 +79,9 @@ const UserDashboard = () => {
             {
               tab === 'bookings' && <Bookings />
             }
-            {/* {
-              tab === 'settings' && <Profile />
-            } */}
+            {
+              tab === 'settings' && <Profile user={userData}/>
+            }
           </div>
         </div>
     </div>

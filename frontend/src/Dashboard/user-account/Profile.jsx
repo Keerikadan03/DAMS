@@ -13,7 +13,6 @@ const Profile = ({user}) => {
     email: '',
     password: '',
     role: 'patient',
-    gender: '',
     photo: null,
   })
 
@@ -21,7 +20,7 @@ const Profile = ({user}) => {
 
   useEffect(()=> {
     console.log(user)
-    setFormData({name: user.name, email: user.email,photo:user.photo, gender:user.gender})
+    setFormData({name: user.name, email: user.email,photo:user.photo})
   },[user])
 
   const handleInputChange = (e) => {
@@ -53,6 +52,7 @@ const Profile = ({user}) => {
       })
 
       const { message } = await res.json()
+      console.log("message is =>",message)
 
       if(!res.ok){
         throw new Error(message)
@@ -104,21 +104,6 @@ const Profile = ({user}) => {
                 onChange={handleInputChange}
                 className='w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer'
                 />
-              </div>
-
-              <div className='mb-4 flex items-center justify-between'>
-
-                <label className='text-headingColor font-bold text-[16px] leadnig-7'>
-                  Are you a: <select name='gender' 
-                  className='text-textColor font-semibold text-[15px] px-4 py-3 leading-7 focus:outline-none' 
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  >
-                    <option value=''>Select</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                  </select>
-                </label>
               </div>
 
               <div className='mb-5 flex items-center gap-3'>
