@@ -81,7 +81,7 @@ export const getDoctorProfile = async (req, res) => {
   try {
     const doctor = await Doctor.findById(doctorId);
 
-    if (!user) {
+    if (!doctor) {
       res.status(404).json({ status: false, message: "Doctor Not Found" });
     }
     const { password, ...rest } = doctor._doc;
@@ -96,6 +96,6 @@ export const getDoctorProfile = async (req, res) => {
       });
   } catch (e) {
     res.status(500).json({ status: false, message: "Something went wrong" });
-    console.log("Error at getting pic is => ", e);
+    console.log("Error at getting profile is => ", e);
   }
 };
