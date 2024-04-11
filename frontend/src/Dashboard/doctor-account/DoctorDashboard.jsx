@@ -5,6 +5,8 @@ import Error from '../../components/Error/Error'
 import Tabs from './Tabs'
 import { token } from '../../config'
 import starIcon from '../../assets/images/Star.png'
+import Profile from './Profile'
+import Appointments from './Appointments'
 
 const useGetProfile = (url) => {
 
@@ -76,9 +78,10 @@ const DoctorDashboard = () => {
                         </div>
                       </div>
                     </div>
+                    {/* == doctor about == */}
                   </div>}
-                { tab === 'appointments' && <div>Appointments</div>}
-                { tab === 'settings' && <div>Profile</div>}
+                { tab === 'appointments' && <Appointments appointments={data.appointments}/>}
+                { tab === 'settings' && <Profile />}
               </div>
             </div>
           </div>
