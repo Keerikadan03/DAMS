@@ -6,6 +6,7 @@ const Profile = () => {
         name: '',
         email: '',
         phone: '',
+        specialization:'',
 
     })
 
@@ -54,6 +55,24 @@ const Profile = () => {
                 <div className='grid grid-cols-3 gap-5 mb-[30px]'>
                     <div>
                         <p className='form_label'>Specialization</p>
+                        <select name="specialization"
+                        id=""
+                        value={formData.specialization}
+                        onChange={handleInputChange}
+                        >
+                            <option value="">Select</option>
+                            <option value="surgery">Surgery</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="dermatology">Dermatology</option>
+                            <option value="pulmonology">Pulmonology</option>
+                            <option value="urology">Urology</option>
+                            <option value="rheumatology">Rheumatology</option>
+                            <option value="nephrology">Nephrology</option>
+                            <option value="gastroenterology">Gastroenterology</option>
+                            <option value="general-practice">General practice</option>
+                            <option value="internal-medicine">Internal medicine</option>
+
+                        </select>
                     </div>
                 </div>
             </div>
