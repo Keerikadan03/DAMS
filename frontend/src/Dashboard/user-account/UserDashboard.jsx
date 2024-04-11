@@ -1,8 +1,40 @@
 import userimg from "../../assets/images/doctor-img01.png"
-import { useContext,useState } from "react"
+import { useContext,useState,useEffect } from "react"
 import { authContext } from '../../context/AuthContext'
-import getUserData from "../../hooks/useFetchdata"
+// import getUserData from "../../hooks/useFetchdata"
+import { token } from "../../config"
 import { BASE_URL } from "../../config"
+
+
+const getUserData = (url) => {
+
+  const [data,setData] = useState([])
+
+  useEffect(() => {
+      const fetchData = async() => {
+          try{
+              const response = await fetch(url, {
+                  headers: {
+                      Authorization: `Bearer ${token}`
+                  }
+              })
+  
+              const result = await response.json();
+  
+              if(!response.ok){
+                  throw new Error(result.message)
+              }
+
+              setData(result.data)
+          }catch(e){
+              console.log("error at fetching data hook is => ", e)
+          }
+      }
+
+      fetchData()
+  },[url])
+return { data}
+}
 
 const UserDashboard = () => {
   const { dispatch } = useContext(authContext);
