@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { BASE_URL,token} from '../../config'
 import { toast } from 'react-toastify'
@@ -14,6 +14,17 @@ const Profile = ({doctorData}) => {
         ticketPrice: 0,
         timeSlots:[],
     })
+
+    useEffect(()=> {
+        setFormData({
+            name: doctorData?.name,
+            email: doctorData?.email,
+            phone: doctorData?.phone,
+            specialization: doctorData?.specialization,
+            ticketPrice: doctorData?.ticketPrice,
+            timeSlots:doctorData?.timeSlots
+        })
+    },[doctorData])
 
     const handleInputChange = (e) => {
         setFormData({...formData, [e.target.name]:e.target.value})
