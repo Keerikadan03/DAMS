@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { BASE_URL,token} from '../../config'
+import { toast } from 'react-toastify'
 
-const Profile = () => {
+const Profile = ({doctorData}) => {
 
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        password: '',
         phone: '',
         specialization:'',
         ticketPrice: 0,
@@ -18,6 +21,30 @@ const Profile = () => {
 
     const updateProfileHandler = async(e) => {
         e.preventDefault();
+
+        try{
+            console.log(doctorData)
+            const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
+                method: 'PuT',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization' : `Bearer ${token}`  
+                },
+                body: JSON.stringify(formData)
+            })
+
+            const result = await res.json()
+
+            if(!res.ok){
+                throw Error(result.message)
+            }
+
+            toast.success(result.message)
+
+        }catch(e){
+            console.log("error at doctor profile update =>",e)
+            toast.error(e.message)
+        }
 
     }
 
