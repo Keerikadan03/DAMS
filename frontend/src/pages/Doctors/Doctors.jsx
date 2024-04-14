@@ -38,7 +38,7 @@ const Doctors = () => {
 
         const data = await response.json();
         setDoctors(data.data);
-        console.log(doctors)
+        console.log("doctors are => ",doctors)
         setLoading(false);
       } catch (error) {
         setError(error);
