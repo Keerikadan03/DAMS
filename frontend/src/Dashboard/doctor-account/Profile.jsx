@@ -149,16 +149,16 @@ const Profile = ({doctorData}) => {
                         onChange={handleInputChange}
                         >
                             <option value="">Select</option>
-                            <option value="surgery">Surgery</option>
-                            <option value="neurology">Neurology</option>
-                            <option value="dermatology">Dermatology</option>
-                            <option value="pulmonology">Pulmonology</option>
-                            <option value="urology">Urology</option>
-                            <option value="rheumatology">Rheumatology</option>
-                            <option value="nephrology">Nephrology</option>
-                            <option value="gastroenterology">Gastroenterology</option>
-                            <option value="general-practice">General-practice</option>
-                            <option value="internal-medicine">Internal-medicine</option>
+                            <option value="Surgery">Surgery</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Pulmonology">Pulmonology</option>
+                            <option value="Urology">Urology</option>
+                            <option value="Rheumatology">Rheumatology</option>
+                            <option value="Nephrology">Nephrology</option>
+                            <option value="Gastroenterology">Gastroenterology</option>
+                            <option value="General-practice">General-practice</option>
+                            <option value="Internal-medicine">Internal-medicine</option>
                         </select>
                     </div>
 

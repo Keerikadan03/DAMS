@@ -41,7 +41,7 @@ return { data}
 const DoctorDashboard = () => {
 
   const { data, loading, error } = useGetProfile(`${BASE_URL}/doctors/profile/me`) 
-  console.log(data)
+  console.log("doctor profile data =>",data)
   const [tab,setTab] = useState('overview')
   return (
     <section>

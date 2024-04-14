@@ -3,9 +3,9 @@ import Doctor from '../models/DoctorSchema.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-const generateToken = user => {
+const generateToken = (user) => {
     return jwt.sign({id: user._id, role: user.role}, process.env.JWT_SECRET_KEY, {
-        expiresIn: "300d",
+        expiresIn: "30d",
     })
 }
 
@@ -66,7 +66,6 @@ export const  login = async(req, res) => {
     const { email, password } = req.body;
     try{
         let user = null;
-
         const patient = await User.findOne({email})
         const doctor = await Doctor.findOne({email})
 
