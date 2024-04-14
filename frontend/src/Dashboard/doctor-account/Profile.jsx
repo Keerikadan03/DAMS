@@ -157,8 +157,8 @@ const Profile = ({doctorData}) => {
                             <option value="rheumatology">Rheumatology</option>
                             <option value="nephrology">Nephrology</option>
                             <option value="gastroenterology">Gastroenterology</option>
-                            <option value="general-practice">General practice</option>
-                            <option value="internal-medicine">Internal medicine</option>
+                            <option value="general-practice">General-practice</option>
+                            <option value="internal-medicine">Internal-medicine</option>
                         </select>
                     </div>
 

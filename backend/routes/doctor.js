@@ -8,7 +8,7 @@ const doctorRouter = express.Router()
 doctorRouter.use("/:doctorId/reviews", reviewRouter)
 
 doctorRouter.get('/:id',authenticate, restrict(['doctor']),  getSingleDoctor);
-doctorRouter.get('/',authenticate, restrict(['doctor']),  getAllDoctors);
+doctorRouter.get('/',authenticate,  getAllDoctors);
 doctorRouter.put('/:id',authenticate, restrict(['doctor']),  updateDoctor);
 doctorRouter.delete('/:id',authenticate, restrict(['doctor']),  deleteDoctor);
 doctorRouter.get('/profile/me',authenticate, restrict(['doctor']),  getDoctorProfile);

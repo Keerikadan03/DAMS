@@ -1,11 +1,16 @@
 import {useState} from 'react'
 import { useSymtomContext } from '../../context/SymptomContext';
 
-const Specialisations = () => {
+const Specialisations = ({ onSpecializationSelect }) => {
   const [searchTerm, setSearchTerm] = useState({
     yearOfBirth: '',
     gender: '',
   })
+
+  const handleSpecializationClick = (specializationName) => {
+    console.log(specializationName)
+    onSpecializationSelect(specializationName)
+  }
 
 
   const fetchToken = async() => {
@@ -86,7 +91,18 @@ const Specialisations = () => {
     <button className='btn mt-[1px] ml-4' onClick={()=> callSpecialisations(searchTerm)}>Find Specialisations</button>
     </div>
     <div>
-    {Object.values(specialisations).map(el => <h1 key={el.ID}>{el.Name}</h1>)}
+    {Object.values(specialisations).map(el => 
+    <button 
+    className='btn mr-2 bg-pink-600' 
+    key={el.ID}
+    onClick={() => {
+      handleSpecializationClick(el.Name)
+      console.log(el)
+    }
+    }
+    >
+      {el.Name}
+    </button>)}
     </div>
     </>
   )
