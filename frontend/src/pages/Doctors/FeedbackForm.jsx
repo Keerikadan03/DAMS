@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
+import { useParams } from 'react-router-dom';
+import { BASE_URL,token } from '../../config';
+import { toast } from 'react-toastify';
 
 const FeedbackForm = () => {
     const[rating, setRating] = useState(0)
     const[Hover, setHover] = useState(0)
     const[ReviewText, setReviewText] = useState("")
+    const [loading,setLoading] = useState(false)
+
+    const {id} = useParams()
 
     const handleSubmitReview  = async e=>{
         e.preventDefault()
+        setLoading(true)
+        
         //---------------------------------
     }
     return (
