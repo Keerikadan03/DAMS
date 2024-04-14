@@ -50,7 +50,7 @@ const DoctorDetails = () => {
 
   const {id} = useParams()
   const {data:doctor, loading, error} = useFetchdata(`${BASE_URL}/doctors/${id}`)
-  // console.log("doctor detils at =>",doctor)
+  console.log("doctor detils at =>",doctor)
   const [tab,setTab] = useState('feedback');
 
   const {
