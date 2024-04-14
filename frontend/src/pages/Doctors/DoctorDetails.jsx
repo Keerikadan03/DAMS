@@ -10,43 +10,44 @@ import { useEffect } from "react";
 import { BASE_URL, token } from '../../config';
 import { useParams } from 'react-router-dom';
 
-const useFetchdata = (url) => {
-
-  const [data,setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-      const fetchData = async() => {
-          setLoading(true);
-          try{
-              const response = await fetch(url, {
-                  headers: {
-                      Authorization: `Bearer ${token}`
-                  }
-              })
-  
-              const result = await response.json();
-  
-              if(!response.ok){
-                  throw new Error(result.message)
-              }
-
-              setData(result.data)
-              setLoading(false)
-          }catch(e){
-              setLoading(false);
-              setError(e.message)
-              console.log("error at fetching data hook is => ", e)
-          }
-      }
-
-      fetchData()
-  },[url])
-return { data, loading, error}
-}
 
 const DoctorDetails = () => {
+
+  const useFetchdata = (url) => {
+
+    const [data,setData] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+  
+    useEffect(() => {
+        const fetchData = async() => {
+            setLoading(true);
+            try{
+                const response = await fetch(url, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+    
+                const result = await response.json();
+    
+                if(!response.ok){
+                    throw new Error(result.message)
+                }
+  
+                setData(result.data)
+                setLoading(false)
+            }catch(e){
+                setLoading(false);
+                setError(e.message)
+                console.log("error at fetching data hook is => ", e)
+            }
+        }
+  
+        fetchData()
+    },[url])
+  return { data, loading, error}
+  }
 
   const {id} = useParams()
   const {data:doctor, loading, error} = useFetchdata(`${BASE_URL}/doctors/${id}`)
