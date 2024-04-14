@@ -50,6 +50,7 @@ const DoctorDetails = () => {
 
   const {id} = useParams()
   const {data:doctor, loading, error} = useFetchdata(`${BASE_URL}/doctors/${id}`)
+  // console.log("doctor detils at =>",doctor)
   const [tab,setTab] = useState('feedback');
 
   const {
@@ -103,7 +104,13 @@ const DoctorDetails = () => {
             </div>
 
           </div>
-          <div> <SidePanel/>  </div>
+          <div> 
+            <SidePanel 
+              doctorId={doctor._id}
+              ticketPrice={ticketPrice}
+              timeSlots={timeSlots}
+            />  
+          </div>
         </div>)}
       </div>
     </section>

@@ -69,12 +69,12 @@ const Profile = ({doctorData}) => {
             const updateItems = [...prevFormData[key]];
             console.log(updateItems);
             updateItems[index][name] = value;
-    
             return {
                 ...prevFormData,
                 [key]: updateItems
             };
         });
+        console.log("time slots are =>",formData.timeSlots)
     };
 
     const deleteItem = (key,index) => {
