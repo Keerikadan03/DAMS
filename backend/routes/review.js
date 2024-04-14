@@ -4,6 +4,6 @@ import { authenticate, restrict } from "../auth/verifyToken.js"
 
 const reviewRouter = express.Router({mergeParams:true});
 
-reviewRouter.route('/').get(getAllReviews).post(authenticate,restrict(['patient']), createReview);
+reviewRouter.route('/').get(getAllReviews).post(authenticate, createReview);
 
 export default reviewRouter;
