@@ -38,6 +38,7 @@ const Doctors = () => {
 
         const data = await response.json();
         setDoctors(data.data);
+        console.log(doctors)
         setLoading(false);
       } catch (error) {
         setError(error);
