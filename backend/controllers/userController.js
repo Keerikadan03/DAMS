@@ -71,14 +71,14 @@ export const getAllAppointments = async(req,res) => {
     try{
         //1 => return appointments from booking
         const bookings = await Booking.find({user:req.userId})
-        // console.log("bookings are =>",bookings)
+        console.log("bookings are =>",bookings)
         //2 => extract doctor id from appointments
         const doctorIds = bookings.map(el => el.doctor.toString())
         
-        // console.log("doctor id maps => ", doctorIds)
+        console.log("doctor id maps => ", doctorIds)
         //3 => retrieve doctor from doctor id
         const doctors = await Doctor.find({_id: {$in:doctorIds}}).select("-password")
-        // console.log("doctors are => ", doctors)
+        console.log("doctors are => ", doctors)
         res.status(200).json({status:true,message:"Appointments Received", data:doctors})
 
     }catch(e){
