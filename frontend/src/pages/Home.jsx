@@ -155,8 +155,6 @@ const Home = () => {
         </div>
 
       </section>
-      
-      <About />
 
       {/* == services section == */}
 
@@ -191,25 +189,8 @@ const Home = () => {
               <img src={featureImg} alt="img"  className='w-3/4'/>
             </div>
           </div>
-          <DoctorsList/>
         </div>
       </section>
-      {/* ==== faq section ====*/}
-      <section>
-        <div className='container'>
-          <div className='flex justify-between gap-[50px] lg:gap-0'>
-            <div className='w=1/2 hidden md:block'><img src={faqImg} alt=''/></div>
-          
-            <div className='w-full md:w-1/2'>
-              <h2 className='heading'>
-                Most questions by beloved patients
-              </h2>
-              <FaqList/>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ==== faq sectio end ====*/}
     </>
     )
 }

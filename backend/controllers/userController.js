@@ -52,6 +52,7 @@ export const getUserProfile = async(req,res) => {
     
     try{
         const user = await User.findById(userId)
+        console.log(userId);
 
         if(!user){
             res.status(404).json({status:false, message: 'User Not Found'})
@@ -70,13 +71,16 @@ export const getAllAppointments = async(req,res) => {
     try{
         //1 => return appointments from booking
         const bookings = await Booking.find({user:req.userId})
-
+        // console.log("bookings are =>",bookings)
         //2 => extract doctor id from appointments
-        const doctorIds = bookings.map(el => el.doctor.id)
-
+        const doctorIds = bookings.map(el => el.doctor.toString())
+        
+        // console.log("doctor id maps => ", doctorIds)
         //3 => retrieve doctor from doctor id
         const doctors = await Doctor.find({_id: {$in:doctorIds}}).select("-password")
+        // console.log("doctors are => ", doctors)
         res.status(200).json({status:true,message:"Appointments Received", data:doctors})
+
     }catch(e){
         console.log('Error at getting appointments => ',e);
         res.status(500).json({status:false, message:"Error getting Appointments"})
