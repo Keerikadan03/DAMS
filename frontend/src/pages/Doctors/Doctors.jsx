@@ -55,6 +55,8 @@ const Doctors = () => {
     return name.includes(searchInput.toLowerCase()) || specialization.includes(searchInput.toLowerCase());
   });
 
+  const sortedDoctors = filteredDoctors.slice().sort((a, b) => b.averageRating - a.averageRating);
+
   const [data, setData] = useState([]);
 
   const addData = newData => {
@@ -89,7 +91,7 @@ const Doctors = () => {
           {error && <Error />}
           {!loading && !error && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filteredDoctors.map(doctor => (
+              {sortedDoctors.map(doctor => (
                 <DoctorCard key={doctor.id} doctor={doctor} />
               ))}
             </div>
