@@ -56,7 +56,7 @@ export const register = async (req, res) => {
         res.status(200).json({ success: true, message: 'User successfully created.' });
     } catch (error) {
         // Handle errors
-        console.error('Error during user registration:', error);
+        console.log('Error during user registration:', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
@@ -83,7 +83,7 @@ export const  login = async(req, res) => {
         }
 
         //check if entered password is right
-        const isPasswordMatch = await bcrypt.compare(req.body.password, user.password)
+        const isPasswordMatch = bcrypt.compare(req.body.password, user.password)
         if(!isPasswordMatch){
             res.status(400).json({status: false, message: "Invalid Credentials"})
         }

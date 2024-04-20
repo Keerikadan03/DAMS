@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const DoctorSchema = new mongoose.Schema({
-  _id: {
-    type: mongoose.Types.ObjectId,
-    default: () => new Types.ObjectId() // Default to a new ObjectId
-},
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },

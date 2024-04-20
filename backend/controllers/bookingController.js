@@ -7,9 +7,11 @@ import Stripe from 'stripe'
 export const getCheckoutSession = async(req,res) => {
     try{
         const doctor = await Doctor.findById(req.params.doctorId)
+        console.log(req.userId)
         const user = await User.findById(req.userId)
-
+        console.log(user)
         const stripe  = new Stripe(process.env.STRIPE_SECRET_KEY)
+        
 
         const session  = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -33,7 +35,7 @@ export const getCheckoutSession = async(req,res) => {
 
         const booking = new Booking({
             doctor: doctor._id,
-            user: user.id,
+            user: user._id,
             ticketPrice: doctor.ticketPrice,
             session: session.id
         })
