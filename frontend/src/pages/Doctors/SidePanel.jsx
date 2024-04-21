@@ -17,7 +17,7 @@ const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
             const data = await res.json()
 
             if(!res.ok){
-                throw new Error("Please try again, sidepanel fetch => ",data.message)
+                throw new Error("Doctors cannot book appointments",data.message)
             }
 
             if(data.session.url){

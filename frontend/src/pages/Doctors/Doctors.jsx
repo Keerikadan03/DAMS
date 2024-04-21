@@ -15,7 +15,6 @@ const Doctors = () => {
   const [error, setError] = useState(null);
 
   const handleSpecializationSelect = (specializationName) => {
-    console.log(specializationName)
     setSearchInput(specializationName)
   }
 
@@ -38,7 +37,6 @@ const Doctors = () => {
 
         const data = await response.json();
         setDoctors(data.data);
-        console.log("doctors are => ",doctors)
         setLoading(false);
       } catch (error) {
         setError(error);

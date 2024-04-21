@@ -43,7 +43,7 @@ const BookingCard = ({doctor,doctorId}) => {
       }
 
       const {data:doctorDetails, loading, error} = useFetchdata(`${BASE_URL}/doctors/${doctorId}`)
-      console.log("doctor details are =>",doctorDetails);
+    //   console.log("doctor details are =>",doctorDetails);
     const {name, totalRating, photo, specialization} = doctor
 
     return (
@@ -58,7 +58,7 @@ const BookingCard = ({doctor,doctorId}) => {
             </span>
             <div className='flex items-center gap-[6px]'>
                 <span className='flex items-center gap-[6px] text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-headingColor'>
-                    <img src={starIcon} alt=""/> {doctorDetails.averageRating}
+                    <img src={starIcon} alt=""/> {parseFloat(doctorDetails.averageRating).toFixed(2)}
                 </span>
                 <span className='text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor'>
                     ({totalRating})
