@@ -15,6 +15,7 @@ const Specialisations = ({ onSpecializationSelect }) => {
 
   const fetchToken = async() => {
     const url = "https://authservice.priaid.ch/login";
+    //apimedic.com
     try{
       const response = await fetch(url, {
         method: 'POST',
@@ -45,7 +46,8 @@ const Specialisations = ({ onSpecializationSelect }) => {
     const callSpecialisations = async(searchTerm) => {
       try{
 
-        const token = await fetchToken();
+        // const token = await fetchToken();
+        const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZlbnNlcmFqdWFsdEBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3NpZCI6IjExMjIzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy92ZXJzaW9uIjoiMTA5IiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9saW1pdCI6IjEwMCIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcCI6IkJhc2ljIiwiaHR0cDovL2V4YW1wbGUub3JnL2NsYWltcy9sYW5ndWFnZSI6ImVuLWdiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9leHBpcmF0aW9uIjoiMjA5OS0xMi0zMSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbWVtYmVyc2hpcHN0YXJ0IjoiMjAyNC0wNC0yMyIsImlzcyI6Imh0dHBzOi8vYXV0aHNlcnZpY2UucHJpYWlkLmNoIiwiYXVkIjoiaHR0cHM6Ly9oZWFsdGhzZXJ2aWNlLnByaWFpZC5jaCIsImV4cCI6MTcxMzg1Nzk5MiwibmJmIjoxNzEzODUwNzkyfQ.aYQzYjji9bQ9SUW_7lz9xrYd5LWFFaYBu5Ka2AhAK_o"
 
         const url = `https://healthservice.priaid.ch/diagnosis/specialisations?token=${token}&symptoms=[${data}]&language=en-gb&gender=${searchTerm.gender}&year_of_birth=${searchTerm.yearOfBirth}`;
         console.log(url)
