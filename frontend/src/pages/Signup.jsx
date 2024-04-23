@@ -37,35 +37,35 @@ const Signup = () => {
     setFormData({...formData, photo:data.url})
   }
 
-  const submitHandler = async(e) => {
-    // console.log(formData)
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true)
-
-    try{
+    setLoading(true);
+  
+    try {
       const res = await fetch(`${BASE_URL}/auth/register`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-      })
-
-      const { message } = await res.json()
-
-      if(!res.ok){
-        throw new Error(message)
+      });
+  
+      const { message } = await res.json();
+  
+      if (!res.ok) {
+        throw new Error(message);
       }
-
-      setLoading(false);
-      toast.success(message)
-      navigate('/login')
-    }catch(e){
-      toast.error(e.message)
-      setLoading(false)
+  
+      toast.success(message);
+      navigate('/login');
+    } catch (e) {
+      toast.error(e.message);
       console.log("Error at signup is =>", e);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
+  
 
   return (
     <section className='px-5 xl:px-0'>
@@ -164,7 +164,9 @@ const Signup = () => {
                 <button 
                 disabled={loading && true} 
                 type='submit' 
-                className='w-full btn rounded-lg'>
+                className='w-full btn rounded-lg'
+                onClick={submitHandler}
+                >
                   {loading? <HashLoader size={35} color='#ffffff'/>: 'Sign Up'}
                 </button>
               </div>

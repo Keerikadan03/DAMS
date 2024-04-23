@@ -7,10 +7,10 @@ import Stripe from 'stripe'
 export const getCheckoutSession = async(req,res) => {
     try{
         const doctor = await Doctor.findById(req.params.doctorId)
-        console.log(req.userId)
+        console.log("doctor id =>",req.userId)
         
         const user = await User.findById(req.userId)
-        console.log(user)
+        console.log("user id =>",user)
         const stripe  = new Stripe(process.env.STRIPE_SECRET_KEY)
         
 

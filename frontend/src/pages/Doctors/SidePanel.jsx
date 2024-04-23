@@ -3,9 +3,9 @@ import { BASE_URL, token } from '../../config'
 import { toast } from 'react-toastify'
 
 const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
-    console.log("timeSlots are => ", timeSlots)
-
-    const bookingHandler = async() => {
+    // timeSlots.map((timeSlot) => console.log(timeSlot.day, " ", timeSlot.startingTime, " ", timeSlot.endingTime))
+        console.log(timeSlots)
+        const bookingHandler = async() => {
         try{
             const res  = await fetch(`${BASE_URL}/bookings/checkout-session/${doctorId}`, {
                 method: 'POST',
@@ -17,6 +17,7 @@ const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
             const data = await res.json()
 
             if(!res.ok){
+                console.log("data message =>",data.message)
                 throw new Error("Doctors cannot book appointments",data.message)
             }
 

@@ -60,41 +60,76 @@ const Profile = ({doctorData}) => {
     }
 
     const addItem = (key,item) => {
-        setFormData(prevFormdata => ({...prevFormdata,[key]:[...prevFormdata[key], item]}))
+        setFormData(prevFormdata => ({
+            ...prevFormdata,
+            [key]:[...prevFormdata[key], item]
+        }))
     }
-
-    const handleChangeFunction = (key, index, event) => {
-        const { name, value } = event.target;
-        setFormData(prevFormData => {
-            const updateItems = [...prevFormData[key]];
-            console.log(updateItems);
-            updateItems[index][name] = value;
-            return {
-                ...prevFormData,
-                [key]: updateItems
-            };
-        });
-        console.log("time slots are =>",formData.timeSlots)
-    };
 
     const deleteItem = (key,index) => {
         setFormData(prevFormData => ({...prevFormData, 
             [key]:[prevFormData[key].filter((_,i) => i !== index)]}))
     }
 
+    // const handleChangeFunction = (key, index, event) => {
+    //     const { name, value } = event.target;
+    //     setFormData(prevFormData => {
+    //         const updateItems = [...prevFormData[key]];
+    //         console.log(updateItems);
+    //         updateItems[index][name] = value;
+    //         return {
+    //             ...prevFormData,
+    //             [key]: updateItems
+    //         };
+    //     });
+    //     console.log("time slots are =>",formData.timeSlots)
+    // };
+
     const handleTimeSlotChange = (event, index) => {
         handleChangeFunction('timeSlots', index, event);
     }
 
+    // const addTimeSlots = (e) => {
+    //     e.preventDefault();
+
+    //     addItem('timeSlots', {
+    //         day: 'Sunday',
+    //         startingTime: '10:00',
+    //         endingTime: '12:00',
+    //     })
+    // } 
+    
+    const handleChangeFunction = (key, index, event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => {
+            const updatedTimeSlots = prevFormData[key].map((item, idx) => {
+                if (idx === index) {
+                    return { ...item, [name]: value };
+                }
+                return item;
+            });
+            return {
+                ...prevFormData,
+                [key]: updatedTimeSlots
+            };
+        });
+    };
+    
     const addTimeSlots = (e) => {
         e.preventDefault();
-
-        addItem('timeSlots', {
-            day: 'Sunday',
-            startingTime: '10:00',
-            endingTime: '12:00',
-        })
-    }    
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            timeSlots: [
+                ...prevFormData.timeSlots,
+                {
+                    day: 'Sunday',
+                    startingTime: '10:00',
+                    endingTime: '12:00',
+                }
+            ]
+        }));
+    };
+    
 
     const deleteTimeSlots = (e,index) => {
         e.preventDefault();
