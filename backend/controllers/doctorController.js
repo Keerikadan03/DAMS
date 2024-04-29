@@ -101,3 +101,26 @@ export const getDoctorProfile = async (req, res) => {
     console.log("Error at getting profile is => ", e);
   }
 };
+
+export const deleteAppointment = async(req,res) => {
+  const doctorId = req.userId;
+  const { userId,selectedIndex } = req.body;
+  // console.log("consoling userId and selectedIndex => ", userId,selectedIndex)
+  try{
+    const doctor = await Doctor.findById(doctorId)
+    doctor.timeSlots[selectedIndex].isBooked = false;
+    await doctor.save();
+
+    // Find all bookings associated with the user
+    // const bookings = await Booking.find({ user: userId });
+    // Delete all bookings associated with the user
+    const result = await Booking.findByIdAndDelete({ _id: userId });
+    console.log(result)
+    res.status(200).json({ status: true, message: "Bookings deleted successfully" });
+
+
+  }catch(e){
+    res.status(500).json({ status: false, message: "Something went wrong" });
+    console.log("Error at deleting appointment => ", e)
+  }
+}
