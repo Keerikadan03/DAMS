@@ -5,9 +5,15 @@ import Stripe from 'stripe'
 
 
 export const getCheckoutSession = async(req,res) => {
+    const { selectedIndex } = req.body;
+    console.log("selected index", selectedIndex)
+
+    console.log("req.body =>",req.body)
     try{
         const doctor = await Doctor.findById(req.params.doctorId)
-        console.log("doctor id =>",req.userId)
+        console.log("doctor id =>",doctor.timeSlots[selectedIndex])
+
+        // console.log("timeslot details at booking are =>", startingTime,endingTime,isBooked)
         
         const user = await User.findById(req.userId)
         console.log("user id =>",user)
@@ -24,7 +30,7 @@ export const getCheckoutSession = async(req,res) => {
                 price_data: {
                     currency: 'usd',
                     unit_amount: doctor.ticketPrice * 100,
-                    product_data: {
+                    product_data: { 
                         name: doctor.name,
                         description: doctor.specialization,
                         // images: [doctor.photo]
@@ -38,10 +44,18 @@ export const getCheckoutSession = async(req,res) => {
             doctor: doctor._id,
             user: user._id,
             ticketPrice: doctor.ticketPrice,
-            session: session.id
-        })
-
+            session: session.id,
+            timeSlots: [doctor.timeSlots[selectedIndex]], // Only include the selected time slot
+            selectedIndex: parseInt(selectedIndex)
+        });
         await booking.save();
+
+        console.log("booking details =>",booking)
+
+        doctor.timeSlots[selectedIndex].isBooked = true;
+        await doctor.save();
+
+        console.log("booking details =>",booking.timeSlots)
 
         res.status(200).json({success:true, message: "Successfully Paid", session})
 

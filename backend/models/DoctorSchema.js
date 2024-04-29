@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
 
+const timeSlotSchema = new mongoose.Schema({
+  startingTime: { type: String, required: true },
+  endingTime: { type: String, required: true },
+  day: { type: String, required: true },
+  isBooked: { type: Boolean, default: false },
+});
+
+
 const DoctorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -23,7 +31,7 @@ const DoctorSchema = new mongoose.Schema({
 
   bio: { type: String, maxLength: 50 },
   about: { type: String },
-  timeSlots: { type: Array },
+  timeSlots: [timeSlotSchema],
   reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
   averageRating: {
     type: Number,

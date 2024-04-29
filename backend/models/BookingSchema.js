@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 
+const timeSlotSchema = new mongoose.Schema({
+  startingTime: { type: String, required: true },
+  endingTime: { type: String, required: true },
+  day: { type: String, required: true },
+  isBooked: { type: Boolean, default: false }
+});
+
 const bookingSchema = new mongoose.Schema(
   {
     doctor: {
@@ -22,6 +29,8 @@ const bookingSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    timeSlots: [timeSlotSchema],
+    selectedIndex: { type: Number, required: true }
   },
   { timestamps: true }
 );

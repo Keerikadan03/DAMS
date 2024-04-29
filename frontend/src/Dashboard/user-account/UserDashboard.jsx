@@ -65,7 +65,7 @@ const UserDashboard = () => {
 
             <div className="mt-[50px] md:mt-[100px]">
               <button onClick={handleLogout} className="w-full bg-primaryColor text-white p-3 text-[16px] leading-7 rounded-md">Logout</button>
-              <button className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button>
+              {/* <button className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button> */}
             </div>
           </div>
 

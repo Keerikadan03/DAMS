@@ -39,9 +39,9 @@ const Appointments = ({ appointments }) => {
     fetchUserDetails();
   }, [appointments]);
 
-//   useEffect(() => {
-//     console.log("userDetails in useEffect => ", userDetails);
-// }, [userDetails]);
+  useEffect(() => {
+    console.log("userDetails in useEffect => ", userDetails);
+}, [userDetails]);
 
   return (
     <>
@@ -54,6 +54,9 @@ const Appointments = ({ appointments }) => {
               <th scope="col" className="px-6 py-3">
                 Name
               </th>
+              {/* <th scope="col" className="px-6 py-3">
+                TimeSlot
+              </th> */}
               <th scope="col" className="px-6 py-3">
                 Gender
               </th>

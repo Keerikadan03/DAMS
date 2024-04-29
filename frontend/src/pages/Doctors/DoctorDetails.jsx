@@ -18,7 +18,7 @@ const DoctorDetails = () => {
     const [data,setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-  
+    
     useEffect(() => {
         const fetchData = async() => {
             setLoading(true);
@@ -51,7 +51,6 @@ const DoctorDetails = () => {
 
   const {id} = useParams()
   const {data:doctor, loading, error} = useFetchdata(`${BASE_URL}/doctors/${id}`)
-  console.log("doctor detils at =>",doctor)
   const [tab,setTab] = useState('feedback');
 
   const {
@@ -67,7 +66,7 @@ const DoctorDetails = () => {
     totalRating,
 
   } = doctor
-  console.log(doctor)
+  console.log("timeslot details at doctor details =>",doctor.timeSlots)
   return (
     <section>
       <div className='max-w-[1170px] px-5 mx-auto'>
@@ -110,6 +109,7 @@ const DoctorDetails = () => {
               doctorId={doctor._id}
               ticketPrice={ticketPrice}
               timeSlots={timeSlots}
+              doctorData={doctor}
             />  
           </div>
         </div>)}

@@ -26,6 +26,17 @@ const Profile = ({doctorData}) => {
         })
     },[doctorData])
 
+    useEffect(() => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            timeSlots: doctorData?.timeSlots.map(slot => ({
+                ...slot,
+                isBooked: slot.isBooked || false // Initialize isBooked to false if not present
+            })) || []
+        }));
+        console.log("time slots are =>",formData.timeSlots)
+    }, [doctorData]);
+
     const handleInputChange = (e) => {
         setFormData({...formData, [e.target.name]:e.target.value})
     }
@@ -36,7 +47,7 @@ const Profile = ({doctorData}) => {
         try{
             console.log(doctorData)
             const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
-                method: 'PuT',
+                method: 'PUT',
                 headers: {
                     'content-type': 'application/json',
                     'Authorization' : `Bearer ${token}`  
@@ -66,10 +77,12 @@ const Profile = ({doctorData}) => {
         }))
     }
 
-    const deleteItem = (key,index) => {
-        setFormData(prevFormData => ({...prevFormData, 
-            [key]:[prevFormData[key].filter((_,i) => i !== index)]}))
-    }
+    const deleteItem = (key, index) => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [key]: prevFormData[key].filter((_, i) => i !== index)
+        }));
+    };
 
     // const handleChangeFunction = (key, index, event) => {
     //     const { name, value } = event.target;
@@ -87,6 +100,7 @@ const Profile = ({doctorData}) => {
 
     const handleTimeSlotChange = (event, index) => {
         handleChangeFunction('timeSlots', index, event);
+        console.log("time slots are =>",formData.timeSlots)
     }
 
     // const addTimeSlots = (e) => {
@@ -104,7 +118,7 @@ const Profile = ({doctorData}) => {
         setFormData(prevFormData => {
             const updatedTimeSlots = prevFormData[key].map((item, idx) => {
                 if (idx === index) {
-                    return { ...item, [name]: value };
+                    return { ...item, [name]: value , isBooked: item.isBooked};
                 }
                 return item;
             });
@@ -113,6 +127,8 @@ const Profile = ({doctorData}) => {
                 [key]: updatedTimeSlots
             };
         });
+
+        console.log("time slots are =>",formData.timeSlots)
     };
     
     const addTimeSlots = (e) => {
@@ -122,12 +138,15 @@ const Profile = ({doctorData}) => {
             timeSlots: [
                 ...prevFormData.timeSlots,
                 {
-                    day: 'Sunday',
                     startingTime: '10:00',
                     endingTime: '12:00',
+                    day: 'Sunday',
+                    isBooked: false
                 }
             ]
         }));
+
+        console.log("time slots are =>",formData.timeSlots)
     };
     
 

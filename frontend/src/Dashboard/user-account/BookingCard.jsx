@@ -5,7 +5,7 @@ import starIcon from '../../assets/images/Star.png';
 import { BASE_URL,token } from '../../config';
 import { useState,useEffect } from 'react';
 
-const BookingCard = ({doctor,doctorId}) => {
+const BookingCard = ({doctor,doctorId,appointments,index}) => {
     const useFetchdata = (url) => {
 
         const [data,setData] = useState([])
@@ -13,6 +13,8 @@ const BookingCard = ({doctor,doctorId}) => {
         const [error, setError] = useState(null)
       
         useEffect(() => {
+
+            appointments.map((app)=> console.log(app.timeSlots))
             const fetchData = async() => {
                 setLoading(true);
                 try{
@@ -42,9 +44,23 @@ const BookingCard = ({doctor,doctorId}) => {
       return { data, loading, error}
       }
 
-      const {data:doctorDetails, loading, error} = useFetchdata(`${BASE_URL}/doctors/${doctorId}`)
-    //   console.log("doctor details are =>",doctorDetails);
+      const {data:doctorDetails} = useFetchdata(`${BASE_URL}/doctors/${doctorId}`)
+
+      const {data:timeSlots} = useFetchdata(`${BASE_URL}/users/appointments/timeslots`);
+      console.log("timeSlots are =>",timeSlots)
+      console.log("doctor details are =>",doctorDetails);
+      const {_id} = doctorDetails;
+      console.log("doctor id is =>",_id)
     const {name, totalRating, photo, specialization} = doctor
+
+
+    const bookingDetails = timeSlots.filter(timeSlot => timeSlot.doctor === _id);
+    const selectedIndex = bookingDetails.length > 0 ? bookingDetails[0].selectedIndex : undefined;
+    console.log("selected index is =>", selectedIndex, appointments[0].timeSlots[1], appointments[0].timeSlots[selectedIndex]);
+    
+    const timeSlot = appointments[0].timeSlots[selectedIndex]
+
+    console.log("timeslot is ", timeSlot)
 
     return (
     <div className='p-3 lg:p-5'>
@@ -65,8 +81,14 @@ const BookingCard = ({doctor,doctorId}) => {
                 </span>
             </div>
         </div>
-        <div className='mt=[18px] lg:mt-3 flex items-center justify-between'>
-            <Link to={`/doctors/${doctor._id}`}className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+        <div className='mt=[18px] lg:mt-3 flex items-center justify-between gap-4'>
+            <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                {timeSlot?.day && timeSlot.day}
+            </p>
+            <p className='text-[15px] leading-6 text-textColor font-semibold'>
+                {timeSlot?.startingTime && timeSlot.startingTime} - {timeSlot?.endingTime && timeSlot.endingTime}
+            </p>
+            <Link to={`/doctors/${doctor._id}`}className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
             </Link>
         </div>

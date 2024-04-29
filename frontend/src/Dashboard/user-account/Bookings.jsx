@@ -47,13 +47,14 @@ const Bookings = () => {
 
   const {data: appointments, loading, error} = getBookingdata(`${BASE_URL}/users/appointments/my-appointments`)
   console.log("appointments data =>", appointments)
+  appointments.map((doctor,index) => console.log(index))
   return (
     <div>
         {loading && !error && <Loading/>}
         {error && !loading && <Error errorMessage={error}/>}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {
-          appointments.map(doctor => <BookingCard doctor={doctor} doctorId={doctor._id} key={doctor._id}/>)
+          appointments.map((doctor,index) => <BookingCard doctor={doctor} appointments={appointments} doctorId={doctor._id} index={index} key={index}/>)
         }
       </div>
       {!loading&& !error && appointments.length === 0 && 

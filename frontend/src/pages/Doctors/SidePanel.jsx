@@ -1,18 +1,24 @@
-import React from 'react'
+import {useState,useEffect} from 'react'
 import { BASE_URL, token } from '../../config'
 import { toast } from 'react-toastify'
 
 const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
-    // timeSlots.map((timeSlot) => console.log(timeSlot.day, " ", timeSlot.startingTime, " ", timeSlot.endingTime))
-        console.log(timeSlots)
         const bookingHandler = async() => {
         try{
+            const requestData = {
+                selectedIndex: selectedTimeSlot
+            };
+
             const res  = await fetch(`${BASE_URL}/bookings/checkout-session/${doctorId}`, {
-                method: 'POST',
+                method: 'post',
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 },
+                body:JSON.stringify(requestData)
             })
+
+            console.log("selected timeslot details => ", timeSlots[selectedTimeSlot])
 
             const data = await res.json()
 
@@ -31,6 +37,19 @@ const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
         }
     }
 
+
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+
+    const handleTimeSlotSelection = (timeSlotId) => {
+        setSelectedTimeSlot(timeSlotId === selectedTimeSlot ? null : timeSlotId);
+    };
+
+    // useEffect(()=>{
+    //     timeSlots.map((timeSlot,index) => {
+    //         console.log("timeSlot details ->", timeSlot.isBooked)
+    //     })
+    // },[handleTimeSlotSelection])
+
     return (
     <div className='shadow-panelShadow p-3 lg:p-5 rounded-md'>
         <div className='flex-item-center justify-between'>
@@ -44,13 +63,21 @@ const SidePanel = ({doctorId,ticketPrice, timeSlots}) => {
             <ul className=''>
                 {
                     timeSlots && timeSlots.map((timeSlot, index) => (
+                        !timeSlot.isBooked && 
                         <li key={index} className='flex items-center justify-between mb-2'>
+                        
                         <p className='text-[15px] leading-6 text-textColor font-semibold'>
                             {timeSlot.day && timeSlot.day}
                         </p>
                         <p className='text-[15px] leading-6 text-textColor font-semibold'>
                             {timeSlot.startingTime && timeSlot.startingTime} - {timeSlot.endingTime && timeSlot.endingTime}
                         </p>
+                        <input
+                            type='checkbox'
+                            value={index}
+                            checked={selectedTimeSlot === index}
+                            onChange={() => handleTimeSlotSelection(index)}
+                        />
                     </li>
                     ))
                 }

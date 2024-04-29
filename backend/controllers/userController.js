@@ -75,14 +75,30 @@ export const getAllAppointments = async(req,res) => {
         //2 => extract doctor id from appointments
         const doctorIds = bookings.map(el => el.doctor.toString())
         
-        console.log("doctor id maps => ", doctorIds)
+        // console.log("doctor id maps => ", doctorIds)
         //3 => retrieve doctor from doctor id
         const doctors = await Doctor.find({_id: {$in:doctorIds}}).select("-password")
-        console.log("doctors are => ", doctors)
+        // console.log("doctors are => ", doctors)
         res.status(200).json({status:true,message:"Appointments Received", data:doctors})
 
     }catch(e){
         console.log('Error at getting appointments => ',e);
         res.status(500).json({status:false, message:"Error getting Appointments"})
     }
+}
+
+
+export const getTimeSlotDetails = async(req,res) => {
+
+    try{
+        const bookings = await Booking.find({user:req.userId})
+        console.log("bookings are =>",bookings)
+
+        res.status(200).json({status:true,message:"Appointments Received", data:bookings})
+    }catch(e){
+        console.log('Error at getting time slot details => ',e);
+        res.status(500).json({status:false, message:"Error getting time slot details"})
+    }
+
+    
 }

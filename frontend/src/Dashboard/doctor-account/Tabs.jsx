@@ -27,7 +27,7 @@ const Tabs = ({tab, setTab}) => {
             
             <div className="mt-[100px] w-full">
               <button onClick={handleLogout} className="w-full bg-primaryColor text-white p-3 text-[16px] leading-7 rounded-md">Logout</button>
-              <button className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button>
+              {/* <button className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button> */}
             </div>
         </div>
     </div>
