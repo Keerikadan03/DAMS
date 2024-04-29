@@ -42,10 +42,33 @@ const UserDashboard = () => {
   const { dispatch } = useContext(authContext);
   const [tab,setTab] = useState('bookings');
   const { data:userData} = getUserData(`${BASE_URL}/users/profile/me`)
-  console.log('userdata => ',userData);
+  console.log('userdata => ',userData._id);
+  const userId = userData._id;
 
   const handleLogout = () => {
     dispatch({type: 'LOGOUT'});
+  }
+
+  const handleUserDelete = async(userId) => {
+
+    try{
+      const res = await fetch(`${BASE_URL}/users/${userId}`, {
+        method: 'delete',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      const data = await res.json()
+      console.log("data is => ", data)
+      if(!res.ok){
+        throw new Error(data.message)
+      }
+
+      dispatch({type: 'LOGOUT'})
+    }catch(e){
+      console.log("error at user delete => ", e)
+    }
   }
 
   return (
@@ -65,7 +88,8 @@ const UserDashboard = () => {
 
             <div className="mt-[50px] md:mt-[100px]">
               <button onClick={handleLogout} className="w-full bg-primaryColor text-white p-3 text-[16px] leading-7 rounded-md">Logout</button>
-              {/* <button className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button> */}
+              <button onClick={() => handleUserDelete(userId)}
+              className="w-full bg-red-600 text-white mt-4 p-3 text-[16px] leading-7 rounded-md">Delete</button>
             </div>
           </div>
 
