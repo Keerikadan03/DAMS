@@ -62,7 +62,7 @@ const deleteAppointmentHandler = async(userId,selectedIndex) => {
       })
 
       const data = await res.json()
-
+      window.location.reload(false);
       if(!res.ok){
           console.log("data message =>",data.message)
           throw new Error("Could not delete the appointment",data.message)
