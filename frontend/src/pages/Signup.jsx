@@ -21,6 +21,37 @@ const Signup = () => {
     photo: selectedFile,
   })
 
+  const [strength,setStrength] = useState("");
+
+  const evaluatePasswordStrength = (password) => {
+    
+    let score = 0;
+
+    if(!password)return "";
+    if(password.length > 8)score+=1;  
+
+    if(/[a-z]/.test(password))score+=1;
+
+    if(/[A-Z]/.test(password))score+=1;
+
+    if(/\d/.test(password))score+=1;
+
+    if(/[^A-Za-z0-9]/.test(password))score+=1;
+    console.log(score)
+
+    switch(score){
+      case 0:
+      case 1:
+      case 2:
+        return "Weak";
+      case 3:
+        return "Medium";
+      case 4:
+      case 5:
+        return "Strong";
+    }
+  }
+
   const navigate = useNavigate()
 
   const handleInputChange = (e) => {
@@ -42,6 +73,11 @@ const Signup = () => {
     setLoading(true);
   
     try {
+       // Check password streng th
+      if (strength !== 'Strong') {
+        throw new Error('Use a stronger password');
+      }
+
       const res = await fetch(`${BASE_URL}/auth/register`, {
         method: 'post',
         headers: {
@@ -113,9 +149,18 @@ const Signup = () => {
                 placeholder='Password' 
                 name='password'
                 value={formData.password}
-                onChange={handleInputChange}
+                onChange={(e) => {
+                  handleInputChange(e);
+                  setStrength(evaluatePasswordStrength(e.target.value))
+                }}
                 className='w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer' required
                 />
+                <small className={strength === 'Weak' ? 'text-red-600' :
+                                strength === 'Medium' ? 'text-orange-500' : 
+                                strength === 'Strong' && 'text-green-500'}>
+                               { strength && `Password strength: ${strength}`}
+                </small>
+
               </div>
 
               <div className='mb-4 flex items-center justify-between'>
