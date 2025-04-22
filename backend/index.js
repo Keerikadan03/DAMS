@@ -19,16 +19,10 @@ const corsOptions = {
 app.get('/', (req,res) => {
     res.send('API is working')
 })
-
 mongoose.set('strictQuery', false)
 const connectDB = async() => {
     try{
-        await mongoose.connect(process.env.MONGO_URL
-        // , {
-        //     useNewUrlParser: true,
-        //     useUnifiedTopology: true
-        // }
-        )
+        await mongoose.connect(process.env.MONGO_URL)
         console.log('MongoDB database is connected')
     }catch(e){
         console.log('MongoDB database is failed =>', e)

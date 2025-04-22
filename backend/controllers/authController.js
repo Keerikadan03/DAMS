@@ -2,6 +2,7 @@ import User from '../models/UserSchema.js'
 import Doctor from '../models/DoctorSchema.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import connectDB from '../utils/db.js'
 
 const generateToken = (user) => {
     return jwt.sign({id: user._id, role: user.role}, process.env.JWT_SECRET_KEY, {
@@ -10,6 +11,7 @@ const generateToken = (user) => {
 }
 
 export const register = async (req, res) => {
+    await connectDB();
     const { email, password, name, role, photo, gender } = req.body;
     try {
         // Check if user already exists
