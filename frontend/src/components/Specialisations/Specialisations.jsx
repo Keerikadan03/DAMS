@@ -20,7 +20,7 @@ const Specialisations = ({ onSpecializationSelect }) => {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          "Authorization" : "Bearer g2J7W_GMAIL_COM_AUT:U6HqXW6LjT+u8L4M6ZePAQ==",
+          "Authorization" : "Bearer Wy4e9_GMAIL_COM_AUT:o5RPy2i9CMa7t3XJe",
         }
       })
 
